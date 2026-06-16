@@ -3,11 +3,431 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome Page </title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Welcome Page</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fb;
+      color: #111827;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #eef6ff, #ffffff);
+      padding-bottom: 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(0,130,203,0.18), transparent 35%);
+      pointer-events: none;
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 90%);
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    .nav-button,
+    .primary-button,
+    .secondary-button,
+    .price-card button,
+    .cta-card button {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .nav-button {
+      background: #111827;
+      color: #ffffff;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 56px;
+      padding-top: 60px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #e8f5ff;
+      color: #0082cb;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #0082cb;
+      border-radius: 50%;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #4b5563;
+      max-width: 620px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .primary-button {
+      background: #0082cb;
+      color: #ffffff;
+      padding: 14px 22px;
+    }
+
+    .secondary-button {
+      background: #ffffff;
+      color: #111827;
+      padding: 14px 22px;
+      border: 1px solid #d1d5db;
+    }
+
+    .hero-checks {
+      display: flex;
+      gap: 18px;
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    .hero-card-wrap {
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      inset: 20px;
+      background: #90d5ff;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
+
+    .dashboard-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.16);
+    }
+
+    .dashboard-image {
+      height: 320px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #0082cb, #90d5ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .dashboard-image img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 36px;
+    }
+
+    .section-heading.center {
+      text-align: center;
+    }
+
+    .section-heading.left {
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      color: #0082cb;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 14px;
+    }
+
+    .muted {
+      color: #6b7280;
+      line-height: 1.7;
+    }
+
+    .features-grid,
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card,
+    .price-card,
+    .workflow-card,
+    .faq-item,
+    .cta-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3,
+    .price-card h3,
+    .faq-item h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature-card p,
+    .price-card p,
+    .faq-item p {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .workflow-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f3f8fc;
+      padding: 16px;
+      border-radius: 16px;
+      font-weight: 700;
+    }
+
+    .step span {
+      width: 30px;
+      height: 30px;
+      background: #0082cb;
+      color: white;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .price-card {
+      position: relative;
+    }
+
+    .price-card.popular {
+      border-color: #0082cb;
+      transform: translateY(-10px);
+    }
+
+    .popular-label {
+      display: inline-block;
+      background: #0082cb;
+      color: white;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: 800;
+      margin: 22px 0;
+    }
+
+    .price span {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .price-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: #374151;
+    }
+
+    .price-card button,
+    .cta-card button {
+      background: #0082cb;
+      color: white;
+      padding: 14px 22px;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 18px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .cta-card {
+      text-align: center;
+      background: linear-gradient(135deg, #0082cb, #111827);
+      color: white;
+    }
+
+    .cta-card p {
+      color: #dbeafe;
+      margin: 12px 0 24px;
+    }
+
+    .cta-card button {
+      width: auto;
+      background: white;
+      color: #0082cb;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .workflow-card {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-checks {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .navbar {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <main class="page">
     <section class="hero-section">
@@ -15,7 +435,7 @@
 
       <nav class="navbar">
         <a href="#" class="brand">
-          <img src="assets/logo.svg" alt="Exemplary logo" class="brand-logo" />
+          <span>💬</span>
           <span>Fin Essentials</span>
         </a>
 
@@ -36,6 +456,7 @@
           </div>
 
           <h1>Build better customer experiences with one simple platform.</h1>
+
           <p>
             A clean test website for showcasing support tools, AI chat, team workflows,
             reporting dashboards, and customer success features.
@@ -56,7 +477,7 @@
           <div class="glow"></div>
           <div class="dashboard-card">
             <div class="dashboard-image">
-              <img src="assets/dashboard-preview.svg" alt="Support dashboard preview" />
+              Support Dashboard Preview
             </div>
           </div>
         </div>
@@ -135,7 +556,7 @@
             <li>✓ Help center</li>
             <li>✓ Email support</li>
           </ul>
-          <button>Choose Plan</button>
+          <button type="button">Choose Plan</button>
         </div>
 
         <div class="price-card popular">
@@ -149,7 +570,7 @@
             <li>✓ Custom reports</li>
             <li>✓ Priority support</li>
           </ul>
-          <button>Choose Plan</button>
+          <button type="button">Choose Plan</button>
         </div>
 
         <div class="price-card">
@@ -162,7 +583,7 @@
             <li>✓ Dedicated support</li>
             <li>✓ Security review</li>
           </ul>
-          <button>Contact Sales</button>
+          <button type="button">Contact Sales</button>
         </div>
       </div>
     </section>
@@ -178,10 +599,12 @@
           <h3>Can I use this as a test website?</h3>
           <p>Yes. You can customize the text, buttons, and sections for demos or internal testing.</p>
         </div>
+
         <div class="faq-item">
           <h3>Can I add Intercom or HubSpot chat?</h3>
           <p>Yes. You can paste your tracking or chat widget script before the closing body tag in this HTML file.</p>
         </div>
+
         <div class="faq-item">
           <h3>Is this responsive?</h3>
           <p>Yes. The layout adapts for mobile, tablet, and desktop screens.</p>
@@ -194,8 +617,7 @@
         <h2>Ready to test your support experience?</h2>
         <p>Use this page as a demo landing page, support chatbot test page, or SaaS product mockup.</p>
 
-        <!-- This button opens Intercom -->
-        <button onclick="contactSupport()">Contact Support →</button>
+        <button type="button" onclick="contactSupport()">Contact Support →</button>
       </div>
     </section>
 
@@ -204,7 +626,6 @@
     </footer>
   </main>
 
-  <!-- Your Website Script -->
   <script>
     function contactSupport() {
       if (window.Intercom) {
@@ -215,30 +636,13 @@
     }
   </script>
 
-  <!-- Intercom Installation Script -->
-    <!-- Intercom Settings -->
- <script>
-    // =========================
-    // INTERCOM SETTINGS
-    // =========================
-
+  <script>
     window.intercomSettings = {
       api_base: "https://api-iam.intercom.io",
-
-      // YOUR APP ID
       app_id: "m12n5blx",
-
-      // SHOW DEFAULT INTERCOM BUBBLE
       hide_default_launcher: false,
-
-      // HIDE POPUP NOTIFICATIONS
       hide_notifications: true
     };
-
-
-    // =========================
-    // LOAD INTERCOM
-    // =========================
 
     (function () {
       var w = window;
@@ -249,13 +653,11 @@
         ic("update", w.intercomSettings);
       } else {
         var d = document;
-
         var i = function () {
           i.c(arguments);
         };
 
         i.q = [];
-
         i.c = function (args) {
           i.q.push(args);
         };
@@ -264,12 +666,11 @@
 
         var l = function () {
           var s = d.createElement("script");
-
           s.type = "text/javascript";
           s.async = true;
 
-          // MUST MATCH YOUR APP ID
-          s.src = "https://widget.intercom.io/widget/umt12kl0";
+          /* This must match app_id above */
+          s.src = "https://widget.intercom.io/widget/m12n5blx";
 
           var x = d.getElementsByTagName("script")[0];
           x.parentNode.insertBefore(s, x);
@@ -284,8 +685,6 @@
         }
       }
     })();
-
   </script>
 </body>
-</html>
 </html>
