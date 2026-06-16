@@ -3,15 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exemplary Test Website</title>
+  <title>Welcome Page </title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Intercom Settings -->
-  <script>
-    window.intercomSettings = {
-      app_id: "m12n5blx"
-    };
-  </script>
+
 </head>
 <body>
   <main class="page">
@@ -21,7 +16,7 @@
       <nav class="navbar">
         <a href="#" class="brand">
           <img src="assets/logo.svg" alt="Exemplary logo" class="brand-logo" />
-          <span>Exemplary</span>
+          <span>Fin Essentials</span>
         </a>
 
         <div class="nav-links">
@@ -221,7 +216,30 @@
   </script>
 
   <!-- Intercom Installation Script -->
-  <script>
+    <!-- Intercom Settings -->
+ <script>
+    // =========================
+    // INTERCOM SETTINGS
+    // =========================
+
+    window.intercomSettings = {
+      api_base: "https://api-iam.intercom.io",
+
+      // YOUR APP ID
+      app_id: "m12n5blx",
+
+      // SHOW DEFAULT INTERCOM BUBBLE
+      hide_default_launcher: false,
+
+      // HIDE POPUP NOTIFICATIONS
+      hide_notifications: true
+    };
+
+
+    // =========================
+    // LOAD INTERCOM
+    // =========================
+
     (function () {
       var w = window;
       var ic = w.Intercom;
@@ -231,11 +249,13 @@
         ic("update", w.intercomSettings);
       } else {
         var d = document;
+
         var i = function () {
           i.c(arguments);
         };
 
         i.q = [];
+
         i.c = function (args) {
           i.q.push(args);
         };
@@ -244,9 +264,12 @@
 
         var l = function () {
           var s = d.createElement("script");
+
           s.type = "text/javascript";
           s.async = true;
-          s.src = "https://widget.intercom.io/widget/m12n5blx";
+
+          // MUST MATCH YOUR APP ID
+          s.src = "https://widget.intercom.io/widget/umt12kl0";
 
           var x = d.getElementsByTagName("script")[0];
           x.parentNode.insertBefore(s, x);
@@ -261,6 +284,7 @@
         }
       }
     })();
+
   </script>
 </body>
 </html>
