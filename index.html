@@ -66,11 +66,6 @@
       font-size: 18px;
     }
 
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-    }
-
     .nav-links {
       display: flex;
       gap: 24px;
@@ -199,11 +194,6 @@
       color: white;
       font-weight: 700;
       text-align: center;
-    }
-
-    .dashboard-image img {
-      max-width: 100%;
-      height: auto;
     }
 
     .section {
@@ -626,38 +616,25 @@
     </footer>
   </main>
 
- <script>
-
-    // =========================
-    // INTERCOM SETTINGS
-    // =========================
+  <!-- Intercom Installation Script -->
+  <script>
+    var INTERCOM_APP_ID = "m12n5blx";
 
     window.intercomSettings = {
       api_base: "https://api-iam.intercom.io",
-
-      // YOUR APP ID
-      app_id: "m12n5blx",
-
-      // Hide popup notifications
+      app_id: INTERCOM_APP_ID,
+      hide_default_launcher: false,
       hide_notifications: true
     };
-
-
-    // =========================
-    // LOAD INTERCOM
-    // =========================
 
     (function () {
       var w = window;
       var ic = w.Intercom;
 
       if (typeof ic === "function") {
-
-        ic('reattach_activator');
-        ic('update', w.intercomSettings);
-
+        ic("reattach_activator");
+        ic("update", w.intercomSettings);
       } else {
-
         var d = document;
 
         var i = function () {
@@ -673,76 +650,34 @@
         w.Intercom = i;
 
         var l = function () {
+          var s = d.createElement("script");
 
-          var s = d.createElement('script');
-
-          s.type = 'text/javascript';
+          s.type = "text/javascript";
           s.async = true;
 
-          // MUST MATCH APP ID
-          s.src = 'https://widget.intercom.io/widget/umt12kl0';
+          s.src = "https://widget.intercom.io/widget/" + INTERCOM_APP_ID;
 
-          var x = d.getElementsByTagName('script')[0];
-
+          var x = d.getElementsByTagName("script")[0];
           x.parentNode.insertBefore(s, x);
         };
 
-        if (document.readyState === 'complete') {
+        if (document.readyState === "complete") {
           l();
         } else if (w.attachEvent) {
-          w.attachEvent('onload', l);
+          w.attachEvent("onload", l);
         } else {
-          w.addEventListener('load', l, false);
+          w.addEventListener("load", l, false);
         }
       }
     })();
 
-
-    // =========================
-    // OPEN INTERCOM MANUALLY
-    // =========================
-
-    function openIntercomChat() {
-
+    function contactSupport() {
       if (window.Intercom) {
-
-        // Open messenger
-        window.Intercom('show');
-
-        // Open new conversation
-        window.Intercom('showNewMessage');
-
+        window.Intercom("show");
       } else {
-
-        console.log('Intercom not loaded yet');
-
+        alert("Intercom is still loading. Please try again in a few seconds.");
       }
     }
-
-
-    // =========================
-    // AUTO OPEN ON PAGE LOAD
-    // =========================
-
-    window.addEventListener('load', function () {
-
-      // Wait for Intercom to initialize
-      setTimeout(function () {
-
-        if (window.Intercom) {
-
-          // Open Messenger
-          window.Intercom('show');
-
-          // Start new conversation immediately
-          window.Intercom('showNewMessage');
-
-        }
-
-      }, 1500);
-
-    });
-
   </script>
 </body>
 </html>
