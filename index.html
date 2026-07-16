@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome Page</title>
+
+  <title>Fin Essentials</title>
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -23,6 +28,11 @@
       color: inherit;
     }
 
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .page {
       min-height: 100vh;
     }
@@ -31,6 +41,10 @@
       width: min(1120px, 90%);
       margin: 0 auto;
     }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
 
     .hero-section {
       position: relative;
@@ -42,14 +56,22 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(0,130,203,0.18), transparent 35%);
+      background: radial-gradient(
+        circle at top right,
+        rgba(0, 130, 203, 0.18),
+        transparent 35%
+      );
       pointer-events: none;
     }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
 
     .navbar {
       position: relative;
       z-index: 2;
-      width: min(1120px, 90%);
+      width: min(1400px, 94%);
       margin: 0 auto;
       padding: 24px 0;
       display: flex;
@@ -64,13 +86,77 @@
       gap: 10px;
       font-weight: 700;
       font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      font-size: 21px;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       color: #4b5563;
       font-size: 14px;
+    }
+
+    .nav-text-link {
+      padding: 10px 4px;
+      white-space: nowrap;
+      transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .nav-text-link:hover {
+      color: #0082cb;
+      transform: translateY(-1px);
+    }
+
+    .nav-action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .meeting-button {
+      background: #0082cb;
+      color: #ffffff;
+      border: 1px solid #0082cb;
+    }
+
+    .meeting-button:hover {
+      background: #006da9;
+      border-color: #006da9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 130, 203, 0.22);
+    }
+
+    .property-button {
+      background: #ffffff;
+      color: #0082cb;
+      border: 1px solid #0082cb;
+    }
+
+    .property-button:hover {
+      background: #e8f5ff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 130, 203, 0.14);
     }
 
     .nav-button,
@@ -85,11 +171,29 @@
     }
 
     .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: #111827;
       color: #ffffff;
       padding: 12px 20px;
       font-size: 14px;
+      white-space: nowrap;
+      transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     }
+
+    .nav-button:hover {
+      background: #263244;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.2);
+    }
+
+    /* =========================
+       HERO CONTENT
+    ========================== */
 
     .hero {
       position: relative;
@@ -143,17 +247,41 @@
       margin-bottom: 18px;
     }
 
+    .primary-button,
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
     .primary-button {
       background: #0082cb;
       color: #ffffff;
-      padding: 14px 22px;
+    }
+
+    .primary-button:hover {
+      background: #006da9;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 130, 203, 0.2);
     }
 
     .secondary-button {
       background: #ffffff;
       color: #111827;
-      padding: 14px 22px;
       border: 1px solid #d1d5db;
+    }
+
+    .secondary-button:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+      transform: translateY(-2px);
     }
 
     .hero-checks {
@@ -191,10 +319,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #ffffff;
       font-weight: 700;
       text-align: center;
     }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================== */
 
     .section {
       padding: 80px 0;
@@ -231,6 +363,10 @@
       line-height: 1.7;
     }
 
+    /* =========================
+       FEATURES AND PRICING
+    ========================== */
+
     .features-grid,
     .pricing-grid {
       display: grid;
@@ -250,6 +386,17 @@
       box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
     }
 
+    .feature-card {
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.1);
+    }
+
     .icon {
       font-size: 30px;
       margin-bottom: 16px;
@@ -267,6 +414,10 @@
       color: #6b7280;
       line-height: 1.6;
     }
+
+    /* =========================
+       WORKFLOW
+    ========================== */
 
     .workflow-card {
       display: grid;
@@ -293,13 +444,18 @@
     .step span {
       width: 30px;
       height: 30px;
+      min-width: 30px;
       background: #0082cb;
-      color: white;
+      color: #ffffff;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
+
+    /* =========================
+       PRICING
+    ========================== */
 
     .pricing-grid {
       grid-template-columns: repeat(3, 1fr);
@@ -317,7 +473,7 @@
     .popular-label {
       display: inline-block;
       background: #0082cb;
-      color: white;
+      color: #ffffff;
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
@@ -347,11 +503,23 @@
     .price-card button,
     .cta-card button {
       background: #0082cb;
-      color: white;
+      color: #ffffff;
       padding: 14px 22px;
       width: 100%;
       font-size: 15px;
+      transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
     }
+
+    .price-card button:hover {
+      background: #006da9;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FAQ
+    ========================== */
 
     .faq-list {
       display: grid;
@@ -360,10 +528,14 @@
       margin: 0 auto;
     }
 
+    /* =========================
+       CONTACT CTA
+    ========================== */
+
     .cta-card {
       text-align: center;
       background: linear-gradient(135deg, #0082cb, #111827);
-      color: white;
+      color: #ffffff;
     }
 
     .cta-card p {
@@ -373,15 +545,40 @@
 
     .cta-card button {
       width: auto;
-      background: white;
+      background: #ffffff;
       color: #0082cb;
     }
+
+    .cta-card button:hover {
+      background: #e8f5ff;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
 
     .footer {
       text-align: center;
       padding: 30px;
       color: #6b7280;
       font-size: 14px;
+    }
+
+    /* =========================
+       TABLET RESPONSIVE
+    ========================== */
+
+    @media (max-width: 1100px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+      }
     }
 
     @media (max-width: 900px) {
@@ -395,15 +592,92 @@
         grid-template-columns: 1fr 1fr;
       }
 
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons,
+      .hero-checks {
+        justify-content: center;
+      }
+
       .nav-links {
-        display: none;
+        gap: 10px;
       }
     }
 
+    /* =========================
+       MOBILE RESPONSIVE
+    ========================== */
+
     @media (max-width: 600px) {
+      .navbar {
+        width: 92%;
+        padding: 18px 0;
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 16px;
+      }
+
+      .nav-button {
+        padding: 10px 15px;
+        font-size: 13px;
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .nav-text-link {
+        display: none;
+      }
+
+      .nav-action-button {
+        width: 100%;
+        min-height: 46px;
+        padding: 11px 10px;
+        font-size: 12px;
+        white-space: normal;
+        text-align: center;
+      }
+
       .features-grid,
       .pricing-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero-content h1 {
+        font-size: 42px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
       }
 
       .hero-checks {
@@ -411,8 +685,43 @@
         gap: 8px;
       }
 
+      .dashboard-image {
+        height: 240px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .feature-card,
+      .price-card,
+      .workflow-card,
+      .faq-item,
+      .cta-card {
+        padding: 22px;
+      }
+
+      .price-card.popular {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 390px) {
       .navbar {
-        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-links {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h1 {
+        font-size: 36px;
       }
     }
   </style>
@@ -420,24 +729,44 @@
 
 <body>
   <main class="page">
+
+    <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="hero-bg"></div>
 
+      <!-- NAVIGATION -->
       <nav class="navbar">
         <a href="#" class="brand">
-          <span>💬</span>
+          <span class="brand-icon">💬</span>
           <span>Fin Essentials</span>
         </a>
 
         <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
+          <a href="#features" class="nav-text-link">Features</a>
+          <a href="#pricing" class="nav-text-link">Pricing</a>
+          <a href="#faq" class="nav-text-link">FAQ</a>
+
+          <!-- BOOK A MEETING BUTTON -->
+          <a
+            href="https://meetings.hubspot.com/john-aldrin"
+            class="nav-action-button meeting-button"
+          >
+            Book a Meeting
+          </a>
+
+          <!-- ENQUIRE ABOUT PROPERTY BUTTON -->
+          <a
+            href="https://rmogs.share.hsforms.com/2gy1cJ7elSFq1-D7A-8vZuA"
+            class="nav-action-button property-button"
+          >
+            Enquire About Property
+          </a>
         </div>
 
         <a href="#contact" class="nav-button">Get Started</a>
       </nav>
 
+      <!-- HERO CONTENT -->
       <div class="hero container">
         <div class="hero-content">
           <div class="badge">
@@ -445,16 +774,23 @@
             AI-powered support workspace
           </div>
 
-          <h1>Build better customer experiences with one simple platform.</h1>
+          <h1>
+            Build better customer experiences with one simple platform.
+          </h1>
 
           <p>
-            A clean test website for showcasing support tools, AI chat, team workflows,
-            reporting dashboards, and customer success features.
+            A clean test website for showcasing support tools, AI chat, team
+            workflows, reporting dashboards, and customer success features.
           </p>
 
           <div class="hero-buttons">
-            <a href="#pricing" class="primary-button">Start Free Trial <span>→</span></a>
-            <a href="#features" class="secondary-button">View Features</a>
+            <a href="#pricing" class="primary-button">
+              Start Free Trial <span>→</span>
+            </a>
+
+            <a href="#features" class="secondary-button">
+              View Features
+            </a>
           </div>
 
           <div class="hero-checks">
@@ -465,6 +801,7 @@
 
         <div class="hero-card-wrap">
           <div class="glow"></div>
+
           <div class="dashboard-card">
             <div class="dashboard-image">
               Support Dashboard Preview
@@ -474,61 +811,105 @@
       </div>
     </section>
 
+    <!-- FEATURES SECTION -->
     <section id="features" class="section container">
       <div class="section-heading left">
         <p class="eyebrow">Features</p>
+
         <h2>Everything your support team needs</h2>
+
         <p class="muted">
-          Use this section to present your product, demo workflow, or test Intercom/HubSpot embedded chat.
+          Use this section to present your product, demo workflow, or test
+          Intercom/HubSpot embedded chat.
         </p>
       </div>
 
       <div class="features-grid">
         <div class="feature-card">
           <div class="icon">⚡</div>
+
           <h3>Fast Setup</h3>
-          <p>Launch your customer support workspace quickly with guided onboarding and ready-made workflows.</p>
+
+          <p>
+            Launch your customer support workspace quickly with guided
+            onboarding and ready-made workflows.
+          </p>
         </div>
 
         <div class="feature-card">
           <div class="icon">💬</div>
+
           <h3>Smart Conversations</h3>
-          <p>Manage chats, emails, and customer requests in one clean inbox built for support teams.</p>
+
+          <p>
+            Manage chats, emails, and customer requests in one clean inbox
+            built for support teams.
+          </p>
         </div>
 
         <div class="feature-card">
           <div class="icon">📊</div>
+
           <h3>Actionable Reports</h3>
-          <p>Track response time, team performance, customer satisfaction, and issue trends in real time.</p>
+
+          <p>
+            Track response time, team performance, customer satisfaction, and
+            issue trends in real time.
+          </p>
         </div>
 
         <div class="feature-card">
           <div class="icon">🛡️</div>
+
           <h3>Secure Platform</h3>
-          <p>Keep customer data protected with role-based access, audit logs, and enterprise-grade controls.</p>
+
+          <p>
+            Keep customer data protected with role-based access, audit logs,
+            and enterprise-grade controls.
+          </p>
         </div>
       </div>
     </section>
 
+    <!-- WORKFLOW SECTION -->
     <section class="section container">
       <div class="workflow-card">
         <div>
           <p class="eyebrow">Workflow automation</p>
+
           <h2>Route every customer question to the right team.</h2>
+
           <p class="muted">
-            Create triggers for account opening, first deposit requests, billing issues, and support escalations.
+            Create triggers for account opening, first deposit requests,
+            billing issues, and support escalations.
           </p>
         </div>
 
         <div class="steps">
-          <div class="step"><span>1</span>Identify customer intent</div>
-          <div class="step"><span>2</span>Assign to correct team</div>
-          <div class="step"><span>3</span>Send automated response</div>
-          <div class="step"><span>4</span>Track resolution status</div>
+          <div class="step">
+            <span>1</span>
+            Identify customer intent
+          </div>
+
+          <div class="step">
+            <span>2</span>
+            Assign to correct team
+          </div>
+
+          <div class="step">
+            <span>3</span>
+            Send automated response
+          </div>
+
+          <div class="step">
+            <span>4</span>
+            Track resolution status
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PRICING SECTION -->
     <section id="pricing" class="section container">
       <div class="section-heading center">
         <p class="eyebrow">Pricing</p>
@@ -538,46 +919,64 @@
       <div class="pricing-grid">
         <div class="price-card">
           <h3>Starter</h3>
+
           <p>For small teams testing support automation.</p>
-          <div class="price">$19<span>/month</span></div>
+
+          <div class="price">
+            $19<span>/month</span>
+          </div>
+
           <ul>
             <li>✓ Shared inbox</li>
             <li>✓ Basic automation</li>
             <li>✓ Help center</li>
             <li>✓ Email support</li>
           </ul>
+
           <button type="button">Choose Plan</button>
         </div>
 
         <div class="price-card popular">
           <div class="popular-label">POPULAR</div>
+
           <h3>Growth</h3>
+
           <p>For growing teams that need better workflows.</p>
-          <div class="price">$49<span>/month</span></div>
+
+          <div class="price">
+            $49<span>/month</span>
+          </div>
+
           <ul>
             <li>✓ Advanced workflows</li>
             <li>✓ AI assistant</li>
             <li>✓ Custom reports</li>
             <li>✓ Priority support</li>
           </ul>
+
           <button type="button">Choose Plan</button>
         </div>
 
         <div class="price-card">
           <h3>Enterprise</h3>
+
           <p>For larger teams with advanced security needs.</p>
+
           <div class="price">Custom</div>
+
           <ul>
             <li>✓ SSO</li>
             <li>✓ Custom permissions</li>
             <li>✓ Dedicated support</li>
             <li>✓ Security review</li>
           </ul>
+
           <button type="button">Contact Sales</button>
         </div>
       </div>
     </section>
 
+    <!-- FAQ SECTION -->
     <section id="faq" class="section faq container">
       <div class="section-heading center">
         <p class="eyebrow">FAQ</p>
@@ -587,36 +986,55 @@
       <div class="faq-list">
         <div class="faq-item">
           <h3>Can I use this as a test website?</h3>
-          <p>Yes. You can customize the text, buttons, and sections for demos or internal testing.</p>
+
+          <p>
+            Yes. You can customize the text, buttons, and sections for demos
+            or internal testing.
+          </p>
         </div>
 
         <div class="faq-item">
           <h3>Can I add Intercom or HubSpot chat?</h3>
-          <p>Yes. You can paste your tracking or chat widget script before the closing body tag in this HTML file.</p>
+
+          <p>
+            Yes. You can paste your tracking or chat widget script before the
+            closing body tag in this HTML file.
+          </p>
         </div>
 
         <div class="faq-item">
           <h3>Is this responsive?</h3>
-          <p>Yes. The layout adapts for mobile, tablet, and desktop screens.</p>
+
+          <p>
+            Yes. The layout adapts for mobile, tablet, and desktop screens.
+          </p>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section container">
       <div class="cta-card">
         <h2>Ready to test your support experience?</h2>
-        <p>Use this page as a demo landing page, support chatbot test page, or SaaS product mockup.</p>
 
-        <button type="button" onclick="contactSupport()">Contact Support →</button>
+        <p>
+          Use this page as a demo landing page, support chatbot test page, or
+          SaaS product mockup.
+        </p>
+
+        <button type="button" onclick="contactSupport()">
+          Contact Support →
+        </button>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
       © 2026 Exemplary Test Website. Built for demo purposes.
     </footer>
   </main>
 
-  <!-- Intercom Installation Script -->
+  <!-- INTERCOM INSTALLATION SCRIPT -->
   <script>
     var INTERCOM_APP_ID = "m12n5blx";
 
@@ -654,8 +1072,8 @@
 
           s.type = "text/javascript";
           s.async = true;
-
-          s.src = "https://widget.intercom.io/widget/" + INTERCOM_APP_ID;
+          s.src =
+            "https://widget.intercom.io/widget/" + INTERCOM_APP_ID;
 
           var x = d.getElementsByTagName("script")[0];
           x.parentNode.insertBefore(s, x);
@@ -675,7 +1093,9 @@
       if (window.Intercom) {
         window.Intercom("show");
       } else {
-        alert("Intercom is still loading. Please try again in a few seconds.");
+        alert(
+          "Intercom is still loading. Please try again in a few seconds."
+        );
       }
     }
   </script>
